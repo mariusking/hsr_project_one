@@ -1,0 +1,26 @@
+{
+  "name": "hsr_project_one",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "./node_modules/.bin/eslint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mariusking/hsr_project_one.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mariusking/hsr_project_one/issues"
+  },
+  "homepage": "https://github.com/mariusking/hsr_project_one#readme",
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-google": "^0.9.1"
+  },
+  "dependencies": {
+  }
+}
