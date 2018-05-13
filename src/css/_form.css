@@ -1,8 +1,8 @@
-label {
+form label {
     min-width: 160px;
 }
 
-input, textarea {
+form input, form textarea {
     width: 100%;
     padding: 12px 20px;
     box-sizing: border-box;
@@ -11,7 +11,11 @@ input, textarea {
     font-size: inherit;
 }
 
-textarea {
+form textarea {
     height: 150px;
     resize: none;
+}
+
+form i {
+    cursor: pointer;
 }

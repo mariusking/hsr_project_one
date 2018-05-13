@@ -22,3 +22,9 @@ i.active {
 .material-icons.md-48 {
     font-size: 48px;
 }
+
+.fab {
+    color: white;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+}
