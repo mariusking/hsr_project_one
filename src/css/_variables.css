@@ -1,0 +1,19 @@
+html {
+    --primary-text-color: black;
+    --primary-text-size: 16px;
+
+    --primary-color: #4dd0e1;
+    --primary-color-light: #88ffff;
+    --primary-color-dark: #009faf;
+
+    --secondary-color: #e57373;
+    --secondary-color-light: #ffa4a2;
+    --secondary-color-dark: #af4448;
+
+    --primary-icon-color: rgba(0, 0, 0, 0.26);
+    --primary-icon-color-active: var(--primary-color);
+
+    --primary-button-color: var(--primary-color);
+    --primary-button-color-active: var(--primary-color-dark);
+    --primary-button-color-hover: var(--primary-color-dark);
+}

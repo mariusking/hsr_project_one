@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notes</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,300,300i,400,400i,700,700i"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link href="css/main.css" rel="stylesheet">
+    <style>
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Your new note</h1>
+    </header>
+    <main>
+        <form class="grid">
+            <label for="title">Title</label>
+            <input id="title" type="text" name="title">
+
+            <label for="description">Description</label>
+            <textarea id="description" name="description"></textarea>
+
+            <label>Importance</label>
+            <div>
+                <i class="material-icons md-36 active">grade</i>
+                <i class="material-icons md-36 active">grade</i>
+                <i class="material-icons md-36 active">grade</i>
+                <i class="material-icons md-36">grade</i>
+                <i class="material-icons md-36">grade</i>
+            </div>
+
+            <label for="toBeDoneBy">To be done by</label>
+            <input id="toBeDoneBy" type="date" name="toBeDoneBy">
+        </form>
+
+        <div class="flex justify-end">
+            <a href="index.html">
+                <button>Cancel</button>
+            </a>
+            <button>Save</button>
+        </div>
+    </main>
+</body>
+</html>

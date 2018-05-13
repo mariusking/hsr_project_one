@@ -1,0 +1,23 @@
+@import url("./_variables.css");
+@import url("./_flex.css");
+@import url("./_grid.css");
+@import url("./_form.css");
+@import url("./_icon.css");
+@import url("./_button.css");
+
+html {
+    font-family: 'Montserrat', sans-serif;
+    font-size: var(--primary-text-size);
+}
+
+body {
+    max-width: 720px;
+    margin: auto;
+
+}
+
+
+
+
+
+
