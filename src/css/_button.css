@@ -38,5 +38,6 @@ button:focus {
 }
 .button-group button:last-of-type {
     margin-right: 4px;
+    border: none;
 }
 
