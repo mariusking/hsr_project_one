@@ -1,5 +1,6 @@
 html {
     --primary-text-color: black;
+    --primary-text-color-light: #999999;
     --primary-text-size: 16px;
 
     --primary-color: #4dd0e1;

@@ -1,6 +1,10 @@
 i {
-    padding: 4px;
     color: var(--primary-icon-color);
+}
+
+i.action {
+    color: var(--primary-icon-color);
+    padding: 4px;
 }
 
 i.active {
@@ -27,4 +31,5 @@ i.active {
     color: white;
     background-color: var(--primary-color);
     border-radius: 50%;
+    padding: 4px;
 }

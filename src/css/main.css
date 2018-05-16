@@ -4,6 +4,9 @@
 @import url("./_form.css");
 @import url("./_icon.css");
 @import url("./_button.css");
+@import url("./_card.css");
+@import url("./_note.css");
+@import url("./_spacing.css");
 
 html {
     font-family: 'Montserrat', sans-serif;
@@ -13,6 +16,7 @@ html {
 body {
     max-width: 720px;
     margin: auto;
+    background-color: #eeeeee;
 
 }
 

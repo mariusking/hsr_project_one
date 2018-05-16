@@ -1,0 +1,12 @@
+.note-header i {
+    color: var(--primary-text-color);
+}
+
+.note-header h3 {
+    margin: 0;
+}
+
+.note-header .sub {
+    color: var(--primary-text-color-light);
+    font-size: 0.8rem;
+}
