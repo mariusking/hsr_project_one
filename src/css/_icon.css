@@ -5,6 +5,7 @@ i {
 i.action {
     color: var(--primary-icon-color);
     padding: 4px;
+    cursor:pointer;
 }
 
 i.active {
