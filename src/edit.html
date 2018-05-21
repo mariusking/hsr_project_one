@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <title>Notes</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,300,300i,400,400i,700,700i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,300,300i,400,400i,700,700i"
+          rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <link href="css/main.css" rel="stylesheet">
     <style>
+
+
     </style>
 </head>
 <body>
@@ -16,31 +19,29 @@
         <h1>Your new note</h1>
     </header>
     <main>
-        <form class="grid">
-            <label for="title">Title</label>
-            <input id="title" type="text" name="title">
+        <form class="form">
+            <label class="form__label" for="title">Title</label>
+            <input class="form__input" id="title" type="text" name="title">
 
-            <label for="description">Description</label>
-            <textarea id="description" name="description"></textarea>
+            <label class="form__label" for="description">Description</label>
+            <textarea class="form__textarea" id="description" name="description"></textarea>
 
-            <label>Importance</label>
+            <label class="form__label">Importance</label>
             <div>
-                <i class="material-icons md-36 active">flash_on</i>
-                <i class="material-icons md-36 active">flash_on</i>
-                <i class="material-icons md-36 active">flash_on</i>
-                <i class="material-icons md-36">flash_on</i>
-                <i class="material-icons md-36">flash_on</i>
+                <i class="form__radio form__radio--active material-icons">flash_on</i>
+                <i class="form__radio form__radio--active material-icons">flash_on</i>
+                <i class="form__radio form__radio--active material-icons">flash_on</i>
+                <i class="form__radio material-icons">flash_on</i>
+                <i class="form__radio material-icons">flash_on</i>
             </div>
 
-            <label for="toBeDoneBy">To be done by</label>
-            <input id="toBeDoneBy" type="date" name="toBeDoneBy">
+            <label class="form__label" for="toBeDoneBy">To be done by</label>
+            <input class="form__input" id="toBeDoneBy" type="date" name="toBeDoneBy">
         </form>
 
-        <div class="flex justify-end padding-8">
-            <a href="index.html">
-                <button>Cancel</button>
-            </a>
-            <button>Save</button>
+        <div class="form__actions">
+            <button class="button">Cancel</button>
+            <button class="button">Save</button>
         </div>
     </main>
 </body>

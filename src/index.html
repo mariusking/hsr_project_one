@@ -13,209 +13,60 @@
 
     <style>
 
-
     </style>
 </head>
 <body>
-    <header class="flex justify-space-between">
+    <header>
         <h1>Your notes</h1>
     </header>
     <main>
-        <div class="note-list-header padding-8">
-            <div class="flex justify-space-between">
-                <a href="edit.html">
-                    <i class="material-icons md-24 fab">add</i>
-                </a>
-                <div>
-                    <i class="material-icons md-24 action">sort</i>
-                    <i class="material-icons md-24 action">filter_list</i>
+        <div class="list">
+            <div class="list__header">
+                <div class="list__actions">
+                    <i class="list__action list__action--main material-icons">add</i>
+                    <div>
+                        <i class="list__action material-icons">sort</i>
+                        <i class="list__action material-icons">filter_list</i>
+                    </div>
+                </div>
+                <div class="list__sort button-group">
+                    <button class="button">By finish Date</button>
+                    <button class="button button--active">By created Date</button>
+                    <button class="button">By Importance</button>
+                </div>
+                <div class="list__filter">
+                    <i class="material-icons">check_box</i>
+                    <span> show archived</span>
                 </div>
             </div>
-            <div class="button-group padding-8">
-                <button class="button-active">By finish Date</button>
-                <button>By created Date</button>
-                <button>By Importance</button>
-            </div>
-            <div class="flex padding-8">
-                <i class="material-icons md-24 active">check_box</i>
-                <span>show archived</span>
-            </div>
-        </div>
-        <div class="note-list">
-            <div class="note card">
-                <div class="note-header flex justify-space-between align-start">
-                    <div>
-                        <h3>title</h3>
-                        <div class="sub">
-                            to be done by
+            <div class="list__entities">
+                <div class="note">
+                    <div class="note__header">
+                        <div>
+                            <h3 class="note__title">title</h3>
+                            <div class="note__duedate">
+                                to be done by
+                            </div>
+                        </div>
+
+                        <div>
+                            <i class="material-icons note__importance">flash_on</i>
+                            <i class="material-icons note__importance">flash_on</i>
                         </div>
                     </div>
-
-                    <div>
-                        <i class="material-icons md-24">flash_on</i>
-                        <i class="material-icons md-24">flash_on</i>
+                    <div class="note__content">
+                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
+                        ut labore et dolore magna aliquyam erat, sed diam voluptua.
                     </div>
-                </div>
-                <div class="note-content padding-8">
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-                </div>
-                <div class="note-actions flex justify-end align-center">
-                    <div>
-                        <i class="material-icons md-24 action">unarchive</i>
-                        <i class="material-icons md-24 action">archive</i>
-                        <i class="material-icons md-24 action">edit</i>
-                    </div>
-                </div>
-            </div>
-            <div class="note card">
-                <div class="note-header flex justify-space-between align-start">
-                    <div>
-                        <h3>title</h3>
-                        <div class="sub">
-                            to be done by
+                    <div class="note__footer">
+                        <div>
+                            <i class="material-icons note__action">unarchive</i>
+                            <i class="material-icons note__action">archive</i>
+                            <i class="material-icons note__action">edit</i>
                         </div>
                     </div>
+                </div>
 
-                    <div>
-                        <i class="material-icons md-24">flash_on</i>
-                        <i class="material-icons md-24">flash_on</i>
-                    </div>
-                </div>
-                <div class="note-content padding-8">
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-                </div>
-                <div class="note-actions flex justify-end align-center">
-                    <div>
-                        <i class="material-icons md-24 action">unarchive</i>
-                        <i class="material-icons md-24 action">archive</i>
-                        <i class="material-icons md-24 action">edit</i>
-                    </div>
-                </div>
-            </div>
-            <div class="note card">
-                <div class="note-header flex justify-space-between align-start">
-                    <div>
-                        <h3>title</h3>
-                        <div class="sub">
-                            to be done by
-                        </div>
-                    </div>
-
-                    <div>
-                        <i class="material-icons md-24">flash_on</i>
-                        <i class="material-icons md-24">flash_on</i>
-                    </div>
-                </div>
-                <div class="note-content padding-8">
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-                </div>
-                <div class="note-actions flex justify-end align-center">
-                    <div>
-                        <i class="material-icons md-24 action">unarchive</i>
-                        <i class="material-icons md-24 action">archive</i>
-                        <i class="material-icons md-24 action">edit</i>
-                    </div>
-                </div>
-            </div>
-            <div class="note card">
-                <div class="note-header flex justify-space-between align-start">
-                    <div>
-                        <h3>title</h3>
-                        <div class="sub">
-                            to be done by
-                        </div>
-                    </div>
-
-                    <div>
-                        <i class="material-icons md-24">flash_on</i>
-                        <i class="material-icons md-24">flash_on</i>
-                    </div>
-                </div>
-                <div class="note-content padding-8">
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-                </div>
-                <div class="note-actions flex justify-end align-center">
-                    <div>
-                        <i class="material-icons md-24 action">unarchive</i>
-                        <i class="material-icons md-24 action">archive</i>
-                        <i class="material-icons md-24 action">edit</i>
-                    </div>
-                </div>
-            </div>
-            <div class="note card">
-                <div class="note-header flex justify-space-between align-start">
-                    <div>
-                        <h3>title</h3>
-                        <div class="sub">
-                            to be done by
-                        </div>
-                    </div>
-
-                    <div>
-                        <i class="material-icons md-24">flash_on</i>
-                        <i class="material-icons md-24">flash_on</i>
-                    </div>
-                </div>
-                <div class="note-content padding-8">
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-                </div>
-                <div class="note-actions flex justify-end align-center">
-                    <div>
-                        <i class="material-icons md-24 action">unarchive</i>
-                        <i class="material-icons md-24 action">archive</i>
-                        <i class="material-icons md-24 action">edit</i>
-                    </div>
-                </div>
-            </div>
-            <div class="note card">
-                <div class="note-header flex justify-space-between align-start">
-                    <div>
-                        <h3>title</h3>
-                        <div class="sub">
-                            to be done by
-                        </div>
-                    </div>
-
-                    <div>
-                        <i class="material-icons md-24">flash_on</i>
-                        <i class="material-icons md-24">flash_on</i>
-                    </div>
-                </div>
-                <div class="note-content padding-8">
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-                </div>
-                <div class="note-actions flex justify-end align-center">
-                    <div>
-                        <i class="material-icons md-24 action">unarchive</i>
-                        <i class="material-icons md-24 action">archive</i>
-                        <i class="material-icons md-24 action">edit</i>
-                    </div>
-                </div>
-            </div>
-            <div class="note card">
-                <div class="note-header flex justify-space-between align-start">
-                    <div>
-                        <h3>title</h3>
-                        <div class="sub">
-                            to be done by
-                        </div>
-                    </div>
-
-                    <div>
-                        <i class="material-icons md-24">flash_on</i>
-                        <i class="material-icons md-24">flash_on</i>
-                    </div>
-                </div>
-                <div class="note-content padding-8">
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-                </div>
-                <div class="note-actions flex justify-end align-center">
-                    <div>
-                        <i class="material-icons md-24 action">unarchive</i>
-                        <i class="material-icons md-24 action">archive</i>
-                        <i class="material-icons md-24 action">edit</i>
-                    </div>
-                </div>
             </div>
         </div>
     </main>

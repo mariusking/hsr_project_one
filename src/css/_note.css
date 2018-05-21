@@ -1,12 +1,45 @@
-.note-header i {
-    color: var(--primary-text-color);
+.note {
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12),
+    0 3px 1px -2px rgba(0, 0, 0, 0.2);
+    background-color:white;
+    padding: 16px;
+    margin-top: 8px;
 }
 
-.note-header h3 {
+.note__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.note__title {
     margin: 0;
 }
 
-.note-header .sub {
+.note__duedate {
     color: var(--primary-text-color-light);
     font-size: 0.8rem;
+}
+
+.note__content {
+    padding: 8px 0;
+}
+
+.note__action {
+    color: var(--primary-icon-color);
+    padding: 4px;
+    cursor:pointer;
+    font-size: 24px;
+}
+
+.note__footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.note__importance {
+    color: var(--primary-text-color);
+    font-size: 24px;
 }
