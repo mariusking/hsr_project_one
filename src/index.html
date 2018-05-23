@@ -42,37 +42,99 @@
                 </div>
             </div>
             <div class="list__entities">
-                <div class="note">
-                    <div class="note__header">
-                        <div>
-                            <h3 class="note__title">title</h3>
-                            <div class="note__duedate">
-                                to be done by
-                            </div>
-                        </div>
-
-                        <div>
-                            <i class="material-icons note__importance">flash_on</i>
-                            <i class="material-icons note__importance">flash_on</i>
-                        </div>
-                    </div>
-                    <div class="note__content">
-                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
-                        ut labore et dolore magna aliquyam erat, sed diam voluptua.
-                    </div>
-                    <div class="note__footer">
-                        <div>
-                            <i class="material-icons note__action">unarchive</i>
-                            <i class="material-icons note__action">archive</i>
-                            <i class="material-icons note__action">edit</i>
-                        </div>
-                    </div>
-                </div>
 
             </div>
         </div>
     </main>
 
-    <script src="js/controller.js"></script>
+    <script id="note-template" type="text/x-handlbars-template">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,300,300i,400,400i,700,700i"
+              rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+        <style>
+            .note {
+                box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+                0 1px 5px 0 rgba(0, 0, 0, 0.12),
+                0 3px 1px -2px rgba(0, 0, 0, 0.2);
+                background-color: white;
+                padding: 16px;
+                margin-top: 8px;
+            }
+
+            .note__header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .note__title {
+                margin: 0;
+            }
+
+            .note__duedate {
+                color: var(--primary-text-color-light);
+                font-size: 0.8rem;
+            }
+
+            .note__content {
+                padding: 8px 0;
+            }
+
+            .note__action {
+                color: var(--primary-icon-color);
+                padding: 4px;
+                cursor: pointer;
+                font-size: 24px;
+            }
+
+            .note__footer {
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+            }
+
+            .note__importance {
+                color: var(--primary-text-color);
+                font-size: 24px;
+            }
+
+        </style>
+        <div class="note">
+            <div class="note__header">
+                <div>
+                    <h3 class="note__title">{{title}}</h3>
+                    <div class="note__duedate">
+                        {{#if dueDate}}
+                        to be done by {{dueDate}}
+                        {{/if}}
+                    </div>
+                </div>
+
+                <div>
+                    <i class="material-icons note__importance">flash_on</i>
+                    <i class="material-icons note__importance">flash_on</i>
+                </div>
+            </div>
+            <div class="note__content">
+                {{description}}
+            </div>
+            <div class="note__footer">
+                <div>
+                    {{#if archived}}
+                    <i class="material-icons note__action">unarchive</i>
+                    {{else}}
+                    <i class="material-icons note__action">archive</i>
+                    {{/if}}
+                    <i class="material-icons note__action">edit</i>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script src="../node_modules/handlebars/dist/handlebars.min.js"></script>
+
+    <script src="js/components/note.js"></script>
+    <script src="js/controllers/index.js"></script>
 </body>
 </html>

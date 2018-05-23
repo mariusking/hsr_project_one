@@ -16,6 +16,7 @@
     const description = document.getElementById('description');
     const importance = document.getElementById('importance');
     const dueDate = document.getElementById('dueDate');
+    const radioButtons = document.querySelectorAll('.form__radio');
 
     const RADIO_ACTIVE_CLASS = "form__radio--active";
 
@@ -55,12 +56,12 @@
     //dataservices
     const dataservices = {
         save: (note) => {
-            const notes = dataservices.all() || [];
+            const notes = dataservices.all();
             notes.push(note);
             localStorage.setItem("notes", JSON.stringify(notes));
         },
         all: () => {
-            return JSON.parse(localStorage.getItem("notes"))
+            return JSON.parse(localStorage.getItem("notes")) || [];
         }
-    }
+    };
 })();
