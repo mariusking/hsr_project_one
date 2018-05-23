@@ -21,28 +21,31 @@
     <main>
         <form class="form">
             <label class="form__label" for="title">Title</label>
-            <input class="form__input" id="title" type="text" name="title">
+            <input class="form__input" id="title" type="text" name="title" required>
 
             <label class="form__label" for="description">Description</label>
-            <textarea class="form__textarea" id="description" name="description"></textarea>
+            <textarea class="form__textarea" id="description" name="description" required></textarea>
 
             <label class="form__label">Importance</label>
-            <div>
-                <i class="form__radio form__radio--active material-icons">flash_on</i>
-                <i class="form__radio form__radio--active material-icons">flash_on</i>
-                <i class="form__radio form__radio--active material-icons">flash_on</i>
-                <i class="form__radio material-icons">flash_on</i>
-                <i class="form__radio material-icons">flash_on</i>
+            <div class="form__radiogroup" id="importance">
+                <i class="form__radio material-icons" data-value="1">flash_on</i>
+                <i class="form__radio material-icons" data-value="2">flash_on</i>
+                <i class="form__radio material-icons" data-value="3">flash_on</i>
+                <i class="form__radio material-icons" data-value="4">flash_on</i>
+                <i class="form__radio material-icons" data-value="5">flash_on</i>
             </div>
 
-            <label class="form__label" for="toBeDoneBy">To be done by</label>
-            <input class="form__input" id="toBeDoneBy" type="date" name="toBeDoneBy">
+            <label class="form__label" for="dueDate">To be done by</label>
+            <input class="form__input" id="dueDate" type="date" name="dueDate">
+
+            <div class="form__actions">
+                <a class="button" href="./index.html">Cancle</a>
+                <button type="submit" class="button" id="save">Save</button>
+            </div>
         </form>
 
-        <div class="form__actions">
-            <button class="button">Cancel</button>
-            <button class="button">Save</button>
-        </div>
     </main>
+
+    <script src="js/controller.js"></script>
 </body>
 </html>
