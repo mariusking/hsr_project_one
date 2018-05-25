@@ -32,8 +32,8 @@
                     </div>
                 </div>
                 <div class="list__sort button-group hide">
-                    <button class="button button--active">By created Date</button>
-                    <button class="button">By Importance</button>
+                    <button class="button button--active" data-sort="dateCreated">By created Date</button>
+                    <button class="button" data-sort="importance">By Importance</button>
                 </div>
                 <div class="list__filter hide">
                     <i class="material-icons">check_box</i>
@@ -71,9 +71,9 @@
             <div class="note__footer">
                 <div>
                     {{#if archived}}
-                    <i class="material-icons note__action action__unarchive">unarchive</i>
+                    <i class="material-icons note__action action__toggle__archive">unarchive</i>
                     {{else}}
-                    <i class="material-icons note__action action__archive">archive</i>
+                    <i class="material-icons note__action action__toggle__archive">archive</i>
                     {{/if}}
                     <i class="material-icons note__action action__edit">edit</i>
                 </div>

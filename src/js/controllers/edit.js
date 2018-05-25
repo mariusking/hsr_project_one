@@ -2,12 +2,13 @@
 (async function () {
     //classes
     class Note {
-        constructor({id, title, description, importance, dueDate}) {
+        constructor({id, title, description, importance, dueDate, archived = false}) {
             this.id = id;
             this.title = title;
             this.description = description;
             this.importance = importance;
             this.dueDate = dueDate;
+            this.archived = archived;
         }
     }
 
@@ -15,47 +16,38 @@
     const noteservices = {
         save: async (note) => {
             return new Promise(async (resolve) => {
-                const notes = await noteservices.all();
+                const notes = await noteservices._all();
                 if (!note.id) {
                     note.id = generator.id();
+                    note.dateCreated = new Date();
                 }
                 notes[note.id] = note;
+                console.log(note);
                 localStorage.setItem("notes", JSON.stringify(notes));
                 resolve();
             });
         },
         get: async (id) => {
             return new Promise(async (resolve) => {
-                const notes = await noteservices.all();
+                const notes = await noteservices._all();
 
                 resolve(notes[id]);
             })
         },
         all: async () => {
+            const notesObject = await noteservices._all();
+            let notes = Object.values(notesObject);
+
+            if(!noteservices.showArchived) {
+                notes = notes.filter(note => !note.archived);
+            }
+            return notes;
+        },
+        _all: async () => {
             return new Promise((resolve) => {
                 let notes = JSON.parse(localStorage.getItem("notes")) || {};
 
                 resolve(notes);
-            })
-        },
-        archive: async (id) => {
-            return new Promise(async (resolve) => {
-                const notes = await noteservices.all();
-
-                notes[id].archived = true;
-
-                await noteservices._set(notes);
-                resolve();
-            })
-        },
-        unarchive: async (id) => {
-            return new Promise(async (resolve) => {
-                const notes = await noteservices.all();
-
-                notes[id].archived = false;
-
-                await noteservices._set(notes);
-                resolve();
             })
         },
         _set: async (notes) => {
@@ -108,16 +100,14 @@
                     title: title.value,
                     description: description.value,
                     importance: importance.dataset.value,
-                    dueDate: dueDate.value
+                    dueDate: dueDate.value,
+                    archived: JSON.parse(form.dataset.archived)
                 });
-
 
                 await noteservices.save(note);
 
                 form.reset();
                 window.location.href = 'index.html';
-
-
             });
 
             form.addEventListener('reset', () => {
@@ -137,8 +127,8 @@
                 })
             });
         },
-        init: async () => {
-            const id = controller.idFromUrl();
+        updateView: async () => {
+            const id = controller._idFromUrl();
             let note = new Note({});
 
             if (id) {
@@ -146,13 +136,13 @@
             }
             controller.render(note);
         },
-        idFromUrl: () => {
+        _idFromUrl: () => {
             const url = new URLSearchParams(window.location.search);
             return url.get('id');
         }
     };
 
 
-    //init
-    controller.init();
+    //updateView
+    controller.updateView();
 })();
