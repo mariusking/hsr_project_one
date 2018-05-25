@@ -1,0 +1,33 @@
+html.style {
+    --background-color: #333333;
+
+    --primary-text-color: white;
+    --primary-text-size: 16px;
+
+    --primary-color: #e57373;
+    --primary-color-light: #ffa4a2;
+    --primary-color-dark: #af4448;
+
+    --secondary-color: #4dd0e1;
+    --secondary-color-light: #88ffff;
+    --secondary-color-dark: #009faf;
+
+    --primary-icon-color: rgba(255, 255, 255, 0.26);
+
+    --card-background-color: black;
+}
+
+.style__action {
+    position: fixed;
+    cursor: pointer;
+    top: -50px;
+    right: -50px;
+    background: var(--secondary-color);
+    width: 100px;
+    height: 100px;
+    transform: rotate(45deg);
+}
+
+.style__action:hover {
+    background: var(--secondary-color-dark)
+}

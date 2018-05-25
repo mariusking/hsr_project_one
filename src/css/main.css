@@ -1,3 +1,4 @@
+@import url("./_style.css");
 @import url("./_variables.css");
 @import url("./_form.css");
 @import url("./_list.css");
@@ -12,11 +13,12 @@ html {
 body {
     max-width: 720px;
     margin: auto;
-    background-color: #eeeeee;
+    background-color: var(--background-color);
+    color: var(--primary-text-color);
 }
 
 i {
-    color: var(--primary-icon-color)
+    color: var(--primary-icon-color);
 }
 
 * {
@@ -24,5 +26,5 @@ i {
 }
 
 .hide {
-    display: none !important;
+    display: none;
 }

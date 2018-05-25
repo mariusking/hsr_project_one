@@ -2,23 +2,34 @@
 (function () {
     //classes
     class Note {
-        constructor({title, description, importance, dueDate}) {
+        constructor({id, title, description, importance, dueDate}) {
+            this.id = id || this._id();
             this.title = title;
             this.description = description;
             this.importance = importance;
             this.dueDate = dueDate;
         }
+
+        _id() {
+            return '_' + Math.random().toString(36).substr(2, 9);
+        }
     }
 
-    //dataservices
-    const dataservices = {
-        save: (note) => {
-            const notes = dataservices.all();
-            notes.push(note);
-            localStorage.setItem("notes", JSON.stringify(notes));
+    //noteservices
+    const noteservices = {
+        save: async (note) => {
+            return new Promise(async (resolve, reject) => {
+                const notes = await noteservices.all();
+                notes.push(note);
+                localStorage.setItem("notes", JSON.stringify(notes));
+                resolve();
+            })
         },
-        all: () => {
-            return JSON.parse(localStorage.getItem("notes")) || [];
+        all: async () => {
+            return new Promise((resolve, reject) => {
+                const notes = JSON.parse(localStorage.getItem("notes")) || [];
+                resolve(notes);
+            })
         }
     };
 
@@ -33,35 +44,47 @@
     const RADIO_ACTIVE_CLASS = "form__radio--active";
 
     //controller
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
+    const controller = {
+        applyListeners: () => {
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
 
-        const note = new Note({
-            title: title.value,
-            description: description.value,
-            importance: importance.dataset.value,
-            dueDate: dueDate.value
-        });
+                const note = new Note({
+                    title: title.value,
+                    description: description.value,
+                    importance: importance.dataset.value,
+                    dueDate: dueDate.value
+                });
 
-        form.reset();
+                form.reset();
 
-        dataservices.save(note);
-    });
+                await noteservices.save(note);
+                console.log(window.location);
+                window.location.href = 'index.html';
 
-    form.addEventListener('reset', () => {
-        delete importance.dataset.value;
-        radioButtons.forEach((radioButton) => {
-            radioButton.classList.remove(RADIO_ACTIVE_CLASS);
-        })
-    });
 
-    importance.addEventListener('click', (e) => {
-        const value = e.target.dataset.value;
-        const radiogroup = e.target.closest('.form__radiogroup');
+            });
 
-        radiogroup.dataset.value = value;
-        Array.from(radiogroup.children).forEach((radiobutton) => {
-            radiobutton.classList.toggle(RADIO_ACTIVE_CLASS, radiobutton.dataset.value <= value);
-        })
-    });
+            form.addEventListener('reset', () => {
+                delete importance.dataset.value;
+                radioButtons.forEach((radioButton) => {
+                    radioButton.classList.remove(RADIO_ACTIVE_CLASS);
+                })
+            });
+
+            importance.addEventListener('click', (e) => {
+                const value = e.target.dataset.value;
+                const radiogroup = e.target.closest('.form__radiogroup');
+
+                radiogroup.dataset.value = value;
+                Array.from(radiogroup.children).forEach((radiobutton) => {
+                    radiobutton.classList.toggle(RADIO_ACTIVE_CLASS, radiobutton.dataset.value <= value);
+                })
+            });
+        }
+    };
+
+
+    //init
+    controller.applyListeners();
 })();

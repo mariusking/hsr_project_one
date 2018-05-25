@@ -1,4 +1,6 @@
 html {
+    --background-color: #eeeeee;
+
     --primary-text-color: black;
     --primary-text-color-light: #999999;
     --primary-text-size: 16px;
@@ -17,4 +19,7 @@ html {
     --primary-button-color: var(--primary-color);
     --primary-button-color-active: var(--primary-color-dark);
     --primary-button-color-hover: var(--primary-color-dark);
+
+    --card-background-color: white;
+    --card-color: var(--primary-text-color);
 }

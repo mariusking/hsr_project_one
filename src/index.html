@@ -12,10 +12,10 @@
 
 
     <style>
-
     </style>
 </head>
 <body>
+    <div class="style__action"></div>
     <header>
         <h1>Your notes</h1>
     </header>
@@ -27,16 +27,16 @@
                         <i class="list__action list__action--main material-icons">add</i>
                     </a>
                     <div>
-                        <i class="list__action material-icons">sort</i>
-                        <i class="list__action material-icons">filter_list</i>
+                        <i id="action__sort" class="list__action material-icons">sort</i>
+                        <i id="action__filter" class="list__action material-icons">filter_list</i>
                     </div>
                 </div>
-                <div class="list__sort button-group">
+                <div class="list__sort button-group hide">
                     <button class="button">By finish Date</button>
                     <button class="button button--active">By created Date</button>
                     <button class="button">By Importance</button>
                 </div>
-                <div class="list__filter">
+                <div class="list__filter hide">
                     <i class="material-icons">check_box</i>
                     <span> show archived</span>
                 </div>
@@ -49,7 +49,7 @@
 
     <script id="note-template" type="text/x-handlbars-template">
         {{#each this}}
-        <div class="note">
+        <div class="note" data-id="{{id}}">
             <div class="note__header">
                 <div>
                     <h3 class="note__title">{{title}}</h3>
@@ -61,8 +61,9 @@
                 </div>
 
                 <div>
+                    {{#times importance}}
                     <i class="material-icons note__importance">flash_on</i>
-                    <i class="material-icons note__importance">flash_on</i>
+                    {{/times}}
                 </div>
             </div>
             <div class="note__content">
@@ -71,11 +72,11 @@
             <div class="note__footer">
                 <div>
                     {{#if archived}}
-                    <i class="material-icons note__action">unarchive</i>
+                    <i class="material-icons note__action action__unarchive">unarchive</i>
                     {{else}}
-                    <i class="material-icons note__action">archive</i>
+                    <i class="material-icons note__action action__archive">archive</i>
                     {{/if}}
-                    <i class="material-icons note__action">edit</i>
+                    <i class="material-icons note__action action__edit">edit</i>
                 </div>
             </div>
         </div>
@@ -84,5 +85,6 @@
 
     <script src="../node_modules/handlebars/dist/handlebars.min.js"></script>
     <script src="js/controllers/index.js"></script>
+    <script src="js/controllers/style.js"></script>
 </body>
 </html>
