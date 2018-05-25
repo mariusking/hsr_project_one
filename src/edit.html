@@ -24,20 +24,20 @@
     </main>
 
     <script id="note-form" type="text/x-handlbars-template">
-        <form class="form" data-id="{{id}}" data-archived="{{archived}}">
+        <form class="form" data-id="{{id}}" data-date-created="{{dateCreated}}" data-archived="{{archived}}">
             <label class="form__label" for="title">Title</label>
             <input class="form__input" id="title" type="text" name="title" required value="{{title}}">
 
-            <label class="form__label" for="description">Description</label>
+            <label clasmos="form__label" for="description">Description</label>
             <textarea class="form__textarea" id="description" name="description" required>{{description}}</textarea>
 
             <label class="form__label">Importance</label>
             <div class="form__radiogroup" id="importance" data-value="{{importance}}">
-                <i class="form__radio material-icons" data-value="1">flash_on</i>
-                <i class="form__radio material-icons" data-value="2">flash_on</i>
-                <i class="form__radio material-icons" data-value="3">flash_on</i>
-                <i class="form__radio material-icons" data-value="4">flash_on</i>
-                <i class="form__radio material-icons" data-value="5">flash_on</i>
+                <i class="form__radio material-icons {{#isActive 1}}form__radio--active{{/isActive}}" data-value="1">flash_on</i>
+                <i class="form__radio material-icons {{#isActive 2}}form__radio--active{{/isActive}}" data-value="2">flash_on</i>
+                <i class="form__radio material-icons {{#isActive 3}}form__radio--active{{/isActive}}" data-value="3">flash_on</i>
+                <i class="form__radio material-icons {{#isActive 4}}form__radio--active{{/isActive}}" data-value="4">flash_on</i>
+                <i class="form__radio material-icons {{#isActive 5}}form__radio--active{{/isActive}}" data-value="5">flash_on</i>
             </div>
 
             <label class="form__label" for="dueDate">To be done by</label>
@@ -50,8 +50,9 @@
         </form>
     </script>
 
+    <script src="../node_modules/moment/min/moment.min.js"></script>
     <script src="../node_modules/handlebars/dist/handlebars.min.js"></script>
-    <script src="js/controllers/style.js"></script>
+    <script src="js/note.js"></script>
     <script src="js/controllers/edit.js"></script>
 </body>
 </html>

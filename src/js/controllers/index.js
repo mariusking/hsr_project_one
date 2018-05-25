@@ -10,64 +10,6 @@
 
 
 (function () {
-    //classes
-    class Note {
-        constructor({id, title, description, importance, dueDate, archived = false}) {
-            this.id = id;
-            this.title = title;
-            this.description = description;
-            this.importance = importance;
-            this.dueDate = dueDate;
-            this.archived = archived;
-        }
-    }
-
-    //noteservices
-    const noteservices = {
-        save: async (note) => {
-            return new Promise(async (resolve) => {
-                const notes = await noteservices._all();
-                if (!note.id) {
-                    note.id = generator.id();
-                    note.dateCreated = new Date();
-                }
-                notes[note.id] = note;
-                localStorage.setItem("notes", JSON.stringify(notes));
-                resolve(note);
-            });
-        },
-        get: async (id) => {
-            return new Promise(async (resolve) => {
-                const notes = await noteservices._all();
-
-                resolve(notes[id]);
-            })
-        },
-        all: async () => {
-            return new Promise(async (resolve) => {
-                const notesObject = await noteservices._all();
-                let notes = Object.values(notesObject);
-
-                if(!noteservices.showArchived) {
-                    notes = notes.filter(note => !note.archived);
-                }
-                resolve(notes);
-            });
-        },
-        _all: async () => {
-            return new Promise((resolve) => {
-                let notes = JSON.parse(localStorage.getItem("notes")) || {};
-
-                resolve(notes);
-            })
-        },
-        _set: async (notes) => {
-            return new Promise(async (resolve) => {
-                localStorage.setItem("notes", JSON.stringify(notes));
-                resolve();
-            });
-        }
-    };
 
     //ui elements
     const listEntities = document.querySelector('.list__entities');
@@ -85,9 +27,12 @@
             const createNoteHTML = Handlebars.compile(noteTemplate);
             listEntities.innerHTML = createNoteHTML(notes);
 
+            controller._findTemplateElements();
+            controller._applyListeners();
+        },
+        _findTemplateElements: () => {
             archiveToggles = document.querySelectorAll('.action__toggle__archive');
             editButtons = document.querySelectorAll('.action__edit');
-            controller._applyListeners();
         },
         _applyListeners: () => {
             sortButton.addEventListener('click', () => {

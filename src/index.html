@@ -32,7 +32,8 @@
                     </div>
                 </div>
                 <div class="list__sort button-group hide">
-                    <button class="button button--active" data-sort="dateCreated">By created Date</button>
+                    <button class="button button--active" data-sort="dueDate">By due date</button>
+                    <button class="button" data-sort="dateCreated">By created date</button>
                     <button class="button" data-sort="importance">By Importance</button>
                 </div>
                 <div class="list__filter hide">
@@ -82,7 +83,9 @@
         {{/each}}
     </script>
 
+    <script src="../node_modules/moment/min/moment.min.js"></script>
     <script src="../node_modules/handlebars/dist/handlebars.min.js"></script>
+    <script src="js/note.js"></script>
     <script src="js/controllers/index.js"></script>
     <script src="js/controllers/style.js"></script>
 </body>
