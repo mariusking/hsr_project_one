@@ -10,6 +10,18 @@
         }
     }
 
+    //dataservices
+    const dataservices = {
+        save: (note) => {
+            const notes = dataservices.all();
+            notes.push(note);
+            localStorage.setItem("notes", JSON.stringify(notes));
+        },
+        all: () => {
+            return JSON.parse(localStorage.getItem("notes")) || [];
+        }
+    };
+
     //ui elements
     const form = document.querySelector('form');
     const title = document.getElementById('title');
@@ -52,16 +64,4 @@
             radiobutton.classList.toggle(RADIO_ACTIVE_CLASS, radiobutton.dataset.value <= value);
         })
     });
-
-    //dataservices
-    const dataservices = {
-        save: (note) => {
-            const notes = dataservices.all();
-            notes.push(note);
-            localStorage.setItem("notes", JSON.stringify(notes));
-        },
-        all: () => {
-            return JSON.parse(localStorage.getItem("notes")) || [];
-        }
-    };
 })();

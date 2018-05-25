@@ -1,23 +1,5 @@
 'use strict';
 (function () {
-
-
-    //webcomponents
-    class PersonalNote extends HTMLElement {
-        constructor(note) {
-            super();
-            this.attachShadow({mode: 'open'});
-
-            const noteTemplate = document.getElementById('note-template').innerHTML;
-            const createNoteHTML = Handlebars.compile(noteTemplate);
-            this.shadowRoot.innerHTML = createNoteHTML(note);
-
-            console.log(note);
-        }
-    }
-
-    window.customElements.define('personal-note', PersonalNote);
-
     //classes
     class Note {
         constructor({title, description, importance, dueDate}) {
@@ -27,9 +9,6 @@
             this.dueDate = dueDate;
         }
     }
-
-    //ui elements
-    const listEntities = document.querySelector('.list__entities');
 
     //dataservices
     const dataservices = {
@@ -43,12 +22,17 @@
         }
     };
 
+    //ui elements
+    const listEntities = document.querySelector('.list__entities');
 
-    const notes = dataservices.all();
+    //controller
+    function render() {
+        const notes = dataservices.all();
+        const noteTemplate = document.getElementById('note-template').innerHTML;
+        const createNoteHTML = Handlebars.compile(noteTemplate);
+        listEntities.innerHTML = createNoteHTML(notes);
+    }
 
-    notes.forEach(note => {
-        const noteElement = new PersonalNote(note);
-        listEntities.appendChild(noteElement);
-    });
+    render();
 
 })();
