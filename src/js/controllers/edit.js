@@ -1,65 +1,120 @@
 'use strict';
-(function () {
+(async function () {
     //classes
     class Note {
         constructor({id, title, description, importance, dueDate}) {
-            this.id = id || this._id();
+            this.id = id;
             this.title = title;
             this.description = description;
             this.importance = importance;
             this.dueDate = dueDate;
-        }
-
-        _id() {
-            return '_' + Math.random().toString(36).substr(2, 9);
         }
     }
 
     //noteservices
     const noteservices = {
         save: async (note) => {
-            return new Promise(async (resolve, reject) => {
+            return new Promise(async (resolve) => {
                 const notes = await noteservices.all();
-                notes.push(note);
+                if (!note.id) {
+                    note.id = generator.id();
+                }
+                notes[note.id] = note;
                 localStorage.setItem("notes", JSON.stringify(notes));
                 resolve();
+            });
+        },
+        get: async (id) => {
+            return new Promise(async (resolve) => {
+                const notes = await noteservices.all();
+
+                resolve(notes[id]);
             })
         },
         all: async () => {
-            return new Promise((resolve, reject) => {
-                const notes = JSON.parse(localStorage.getItem("notes")) || [];
+            return new Promise((resolve) => {
+                let notes = JSON.parse(localStorage.getItem("notes")) || {};
+
                 resolve(notes);
             })
+        },
+        archive: async (id) => {
+            return new Promise(async (resolve) => {
+                const notes = await noteservices.all();
+
+                notes[id].archived = true;
+
+                await noteservices._set(notes);
+                resolve();
+            })
+        },
+        unarchive: async (id) => {
+            return new Promise(async (resolve) => {
+                const notes = await noteservices.all();
+
+                notes[id].archived = false;
+
+                await noteservices._set(notes);
+                resolve();
+            })
+        },
+        _set: async (notes) => {
+            return new Promise(async (resolve) => {
+                localStorage.setItem("notes", JSON.stringify(notes));
+                resolve();
+            });
         }
     };
 
     //ui elements
-    const form = document.querySelector('form');
-    const title = document.getElementById('title');
-    const description = document.getElementById('description');
-    const importance = document.getElementById('importance');
-    const dueDate = document.getElementById('dueDate');
-    const radioButtons = document.querySelectorAll('.form__radio');
+    const main = document.querySelector('main');
+    let form = {};
+    let title = {};
+    let description = {};
+    let importance = {};
+    let dueDate = {};
+    let radioButtons = [];
 
     const RADIO_ACTIVE_CLASS = "form__radio--active";
 
     //controller
+    const generator = {
+        id: () => {
+            return '_' + Math.random().toString(36).substr(2, 9);
+        }
+    };
+
     const controller = {
-        applyListeners: () => {
+        render: async (note) => {
+            const noteTemplate = document.getElementById('note-form').innerHTML;
+            const createNoteHTML = Handlebars.compile(noteTemplate);
+            main.innerHTML = createNoteHTML(note);
+
+            form = document.querySelector('form');
+            title = document.getElementById('title');
+            description = document.getElementById('description');
+            importance = document.getElementById('importance');
+            dueDate = document.getElementById('dueDate');
+            radioButtons = document.querySelectorAll('.form__radio');
+
+            controller._applyListeners();
+        },
+        _applyListeners: () => {
             form.addEventListener('submit', async (e) => {
                 e.preventDefault();
 
                 const note = new Note({
+                    id: form.dataset.id,
                     title: title.value,
                     description: description.value,
                     importance: importance.dataset.value,
                     dueDate: dueDate.value
                 });
 
-                form.reset();
 
                 await noteservices.save(note);
-                console.log(window.location);
+
+                form.reset();
                 window.location.href = 'index.html';
 
 
@@ -81,10 +136,23 @@
                     radiobutton.classList.toggle(RADIO_ACTIVE_CLASS, radiobutton.dataset.value <= value);
                 })
             });
+        },
+        init: async () => {
+            const id = controller.idFromUrl();
+            let note = new Note({});
+
+            if (id) {
+                note = await noteservices.get(id);
+            }
+            controller.render(note);
+        },
+        idFromUrl: () => {
+            const url = new URLSearchParams(window.location.search);
+            return url.get('id');
         }
     };
 
 
     //init
-    controller.applyListeners();
+    controller.init();
 })();

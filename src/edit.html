@@ -20,15 +20,19 @@
         <h1>Your new note</h1>
     </header>
     <main>
-        <form class="form">
+
+    </main>
+
+    <script id="note-form" type="text/x-handlbars-template">
+        <form class="form" data-id="{{id}}">
             <label class="form__label" for="title">Title</label>
-            <input class="form__input" id="title" type="text" name="title" required>
+            <input class="form__input" id="title" type="text" name="title" required value="{{title}}">
 
             <label class="form__label" for="description">Description</label>
-            <textarea class="form__textarea" id="description" name="description" required></textarea>
+            <textarea class="form__textarea" id="description" name="description" required>{{description}}</textarea>
 
             <label class="form__label">Importance</label>
-            <div class="form__radiogroup" id="importance">
+            <div class="form__radiogroup" id="importance" data-value="{{importance}}">
                 <i class="form__radio material-icons" data-value="1">flash_on</i>
                 <i class="form__radio material-icons" data-value="2">flash_on</i>
                 <i class="form__radio material-icons" data-value="3">flash_on</i>
@@ -37,16 +41,16 @@
             </div>
 
             <label class="form__label" for="dueDate">To be done by</label>
-            <input class="form__input" id="dueDate" type="date" name="dueDate">
+            <input class="form__input" id="dueDate" type="date" name="dueDate" value="{{dueDate}}">
 
             <div class="form__actions">
                 <a class="button" href="./index.html">Cancle</a>
                 <button class="button" type="submit">Save</button>
             </div>
         </form>
+    </script>
 
-    </main>
-
+    <script src="../node_modules/handlebars/dist/handlebars.min.js"></script>
     <script src="js/controllers/style.js"></script>
     <script src="js/controllers/edit.js"></script>
 </body>

@@ -24,46 +24,52 @@
     //noteservices
     const noteservices = {
         save: async (note) => {
-            return new Promise(async (resolve, reject) => {
+            return new Promise(async (resolve) => {
                 const notes = await noteservices.all();
-                notes.push(note);
-                await noteservices._set(notes);
+                if (!note.id) {
+                    note.id = generator.id();
+                }
+                notes[note.id] = note;
+                localStorage.setItem("notes", JSON.stringify(notes));
                 resolve();
+            });
+        },
+        get: async (id) => {
+            return new Promise(async (resolve) => {
+                const notes = await noteservices.all();
+
+                resolve(notes[id]);
             })
         },
         all: async () => {
-            return new Promise((resolve, reject) => {
-                let notes = JSON.parse(localStorage.getItem("notes")) || [];
+            return new Promise((resolve) => {
+                let notes = JSON.parse(localStorage.getItem("notes")) || {};
 
                 resolve(notes);
             })
         },
         archive: async (id) => {
-            return new Promise(async (resolve, reject) => {
+            return new Promise(async (resolve) => {
                 const notes = await noteservices.all();
 
-                notes.filter(note => note.id === id).forEach(note => {
-                    note.archived = true;
-                });
+                notes[id].archived = true;
 
                 await noteservices._set(notes);
                 resolve();
             })
         },
         unarchive: async (id) => {
-            return new Promise(async (resolve, reject) => {
+            return new Promise(async (resolve) => {
                 const notes = await noteservices.all();
 
-                notes.filter(note => note.id === id).forEach(note => {
-                    note.archived = false;
-                });
+                notes[id].archived = false;
 
                 await noteservices._set(notes);
                 resolve();
             })
         },
         _set: async (notes) => {
-            return new Promise(async (resolve, reject) => {
+            return new Promise(async (resolve) => {
                 localStorage.setItem("notes", JSON.stringify(notes));
                 resolve();
             });
@@ -78,6 +84,7 @@
     const filterContainer = document.querySelector('.list__filter');
     let archiveButtons = [];
     let unarchiveButtons = [];
+    let editButtons = [];
 
     //controller
     const controller = {
@@ -88,6 +95,7 @@
 
             archiveButtons = document.querySelectorAll('.action__archive');
             unarchiveButtons = document.querySelectorAll('.action__unarchive');
+            editButtons = document.querySelectorAll('.action__edit');
             controller._applyListeners();
         },
         _applyListeners: () => {
@@ -111,6 +119,12 @@
                     const id = e.target.closest('.note').dataset.id;
                     await noteservices.unarchive(id);
                     controller.init();
+                });
+            });
+            editButtons.forEach(button => {
+                button.addEventListener('click', async (e) => {
+                    const id = e.target.closest('.note').dataset.id;
+                    window.location.href = `edit.html?id=${id}`;
                 });
             });
         },
