@@ -26,14 +26,21 @@
     color: var(--primary-icon-color-active);
 }
 
-.list__filter, .list__sort {
+.list__action__container {
     display: flex;
-    align-items: center;
+    justify-content: space-between;
 
     padding: 16px 0 0;
 }
 
-.list__filter i {
+.list__action__filter, .list__actions__sort {
+    display: flex;
+    align-items: center;
+
+    cursor: pointer;
+}
+
+.list__action__filter i {
     color: var(--primary-icon-color-active);
 }
 

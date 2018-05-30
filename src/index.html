@@ -27,18 +27,19 @@
                         <i class="list__action list__action--main material-icons">add</i>
                     </a>
                     <div>
-                        <i id="action__sort" class="list__action material-icons">sort</i>
-                        <i id="action__filter" class="list__action material-icons">filter_list</i>
+                        <i id="action__hider" class="list__action material-icons">sort</i>
                     </div>
                 </div>
-                <div class="list__sort button-group hide">
-                    <button class="button button--active" data-sort="dueDate">By due date</button>
-                    <button class="button" data-sort="dateCreated">By created date</button>
-                    <button class="button" data-sort="importance">By Importance</button>
-                </div>
-                <div class="list__filter hide">
-                    <i class="material-icons">check_box</i>
-                    <span> show archived</span>
+                <div class="list__action__container hide">
+                    <div class="list__action__sort button-group">
+                        <button class="button button--active" data-sort="dueDate">By due date</button>
+                        <button class="button" data-sort="dateCreated">By created date</button>
+                        <button class="button" data-sort="importance">By Importance</button>
+                    </div>
+                    <div class="list__action__filter">
+                        <i class="material-icons">check_box</i>
+                        <span> show archived</span>
+                    </div>
                 </div>
             </div>
             <div class="list__entities">

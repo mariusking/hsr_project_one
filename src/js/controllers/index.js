@@ -13,10 +13,10 @@
 
     //ui elements
     const listEntities = document.querySelector('.list__entities');
-    const sortButton = document.getElementById('action__sort');
-    const sortContainer = document.querySelector('.list__sort');
-    const filterButton = document.getElementById('action__filter');
-    const filterContainer = document.querySelector('.list__filter');
+    const listActionHider = document.getElementById('action__hider');
+    const listActionContainer = document.querySelector('.list__action__container');
+    const listActionsFilter = document.querySelector('.list__action__filter');
+
     let archiveToggles = [];
     let editButtons = [];
 
@@ -28,20 +28,17 @@
             listEntities.innerHTML = createNoteHTML(notes);
 
             controller._findTemplateElements();
-            controller._applyListeners();
+            controller._applyTemplateListeners();
         },
         _findTemplateElements: () => {
             archiveToggles = document.querySelectorAll('.action__toggle__archive');
             editButtons = document.querySelectorAll('.action__edit');
         },
-        _applyListeners: () => {
-            sortButton.addEventListener('click', () => {
-                sortButton.classList.toggle('list__action--active');
-                sortContainer.classList.toggle('hide');
-            });
-            filterButton.addEventListener('click', () => {
-                filterButton.classList.toggle('list__action--active');
-                filterContainer.classList.toggle('hide');
+        _applyTemplateListeners: () => {
+            listActionHider.addEventListener('click', () => {
+                console.log('test');
+                listActionHider.classList.toggle('list__action--active');
+                listActionContainer.classList.toggle('hide');
             });
             archiveToggles.forEach(button => {
                 button.addEventListener('click', async (e) => {
@@ -59,11 +56,17 @@
                 });
             });
         },
+        applyListeners: () => {
+            listActionsFilter.addEventListener('click', (e) => {
+            })
+        },
         updateView: async () => {
             const notes = await noteservices.all();
             controller.render(notes);
         }
     };
+
+    controller.applyListeners();
 
     //updateView
     controller.updateView();
