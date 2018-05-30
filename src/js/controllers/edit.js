@@ -22,11 +22,6 @@
     const RADIO_ACTIVE_CLASS = "form__radio--active";
 
     //controller
-    const generator = {
-        id: () => {
-            return '_' + Math.random().toString(36).substr(2, 9);
-        }
-    };
 
     const controller = {
         render: async (note) => {
