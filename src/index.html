@@ -37,23 +37,14 @@
                         <button class='button' data-sort="importance">By Importance</button>
                     </div>
                     <div class="list__action__filter">
+                        <i class="material-icons"></i>
+                        <span> show archived</span>
                     </div>
                 </div>
             </div>
-            <div class="list__entities">
-
-            </div>
+            <div class="list__entities"></div>
         </div>
     </main>
-
-    <script id="list-action-filter" type="text/x-handlbars-template">
-        {{#if this}}
-        <i class="material-icons">check_box</i>
-        {{else}}
-        <i class="material-icons">check_box_outline_blank</i>
-        {{/if}}
-        <span> show archived</span>
-    </script>
 
     <script id="note-template" type="text/x-handlbars-template">
         {{#each this}}
@@ -93,7 +84,9 @@
 
     <script src="../node_modules/moment/min/moment.min.js"></script>
     <script src="../node_modules/handlebars/dist/handlebars.min.js"></script>
-    <script src="js/note.js"></script>
+    <script src="js/helper/handlebars-helper.js"></script>
+    <script src="js/model/note.js"></script>
+    <script src="js/model/style.js"></script>
     <script src="js/controllers/index.js"></script>
     <script src="js/controllers/style.js"></script>
 </body>

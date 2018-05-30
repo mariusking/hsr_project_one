@@ -1,13 +1,6 @@
 'use strict';
 (function () {
 
-    //noteservices
-    const noteservices = {
-        get: () => {
-            return JSON.parse(localStorage.getItem("style")) || false;
-        }
-    };
-
     //ui elements
     const html = document.querySelector('html');
     const styleAction = document.querySelector('.style__action');
@@ -15,13 +8,13 @@
     //controller
     const controller = {
         init: () => {
-            const style = noteservices.get();
+            const style = styleservices.get();
             html.classList.toggle('style', style);
         },
         applyListeners: () => {
             styleAction.addEventListener('click', () => {
                 html.classList.toggle('style');
-                localStorage.setItem('style', !noteservices.get());
+                styleservices.toggle();
             });
         }
     };

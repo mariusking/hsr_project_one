@@ -1,15 +1,5 @@
 'use strict';
 (function () {
-    Handlebars.registerHelper('times', function (n, block) {
-        let accum = '';
-        for (let i = 0; i < n; ++i)
-            accum += block.fn(i);
-        return accum;
-    });
-})();
-
-
-(function () {
 
     //ui elements
     const listEntities = document.querySelector('.list__entities');
@@ -38,9 +28,12 @@
             listEntities.innerHTML = createNoteHTML(notes);
         },
         _renderFilterAction: (filter) => {
-            const listActionFilterTemplate = document.getElementById('list-action-filter').innerHTML;
-            const createNoteHTML = Handlebars.compile(listActionFilterTemplate);
-            listActionFilter.innerHTML = createNoteHTML(filter);
+            const icon = listActionFilter.querySelector('i');
+            if(filter) {
+                icon.innerHTML = 'check_box';
+            } else {
+                icon.innerHTML = 'check_box_outline_blank';
+            }
         },
         _renderSortAction: (sort) => {
             Array.from(listActionSort.children).forEach(child => {
@@ -96,7 +89,7 @@
         },
         updateView: async () => {
             const notes = await noteservices.all();
-            const filter = noteservices.getFilter();
+            const filter = noteservices.isFiltred();
             const sort = noteservices.getSort();
             controller.render({notes, filter, sort});
         }

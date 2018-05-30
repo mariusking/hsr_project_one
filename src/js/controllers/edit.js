@@ -1,13 +1,5 @@
 'use strict';
 (function () {
-    Handlebars.registerHelper('importance', function(datavalue, options) {
-        if(datavalue <= this.importance) {
-            return options.fn(this);
-        }
-    });
-})();
-
-(async function () {
 
     //ui elements
     const main = document.querySelector('main');
@@ -21,7 +13,6 @@
     const RADIO_ACTIVE_CLASS = "form__radio--active";
 
     //controller
-
     const controller = {
         render: async (note) => {
             const noteTemplate = document.getElementById('note-form').innerHTML;
@@ -39,7 +30,7 @@
             dueDate = document.getElementById('dueDate');
             radioButtons = document.querySelectorAll('.form__radio');
         },
-        _getNoteFormValues: () => {
+        _getFormValues: () => {
             return {
                 id: form.dataset.id,
                 title: title.value,
@@ -54,7 +45,7 @@
             form.addEventListener('submit', async (e) => {
                 e.preventDefault();
 
-                const noteFormValues = controller._getNoteFormValues();
+                const noteFormValues = controller._getFormValues();
 
                 await noteservices.save(new Note(noteFormValues));
 
