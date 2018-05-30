@@ -1,8 +1,7 @@
 'use strict';
 (function () {
-    Handlebars.registerHelper('isActive', function(datavalue, options) {
+    Handlebars.registerHelper('importance', function(datavalue, options) {
         if(datavalue <= this.importance) {
-            console.log(options);
             return options.fn(this);
         }
     });
@@ -40,21 +39,24 @@
             dueDate = document.getElementById('dueDate');
             radioButtons = document.querySelectorAll('.form__radio');
         },
+        _getNoteFormValues: () => {
+            return {
+                id: form.dataset.id,
+                title: title.value,
+                description: description.value,
+                importance: importance.dataset.value,
+                dueDate: dueDate.value,
+                archived: JSON.parse(form.dataset.archived),
+                dateCreated: form.dataset.dateCreated
+            }
+        },
         _applyListeners: () => {
             form.addEventListener('submit', async (e) => {
                 e.preventDefault();
 
-                const note = new Note({
-                    id: form.dataset.id,
-                    title: title.value,
-                    description: description.value,
-                    importance: importance.dataset.value,
-                    dueDate: dueDate.value,
-                    archived: JSON.parse(form.dataset.archived),
-                    dateCreated: form.dataset.dateCreated
-                });
+                const noteFormValues = controller._getNoteFormValues();
 
-                await noteservices.save(note);
+                await noteservices.save(new Note(noteFormValues));
 
                 form.reset();
                 window.location.href = 'index.html';

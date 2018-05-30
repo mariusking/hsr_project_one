@@ -9,6 +9,14 @@ class Note {
         this.dateCreated = dateCreated;
         this.archived = archived;
     }
+
+    archive() {
+        this.archived = true;
+    }
+
+    unarchive() {
+        this.archived = false;
+    }
 }
 
 //noteservices
@@ -28,15 +36,14 @@ const noteservices = {
     get: async (id) => {
         return new Promise(async (resolve) => {
             const notes = await noteservices._all();
-            resolve(notes[id]);
+            resolve(new Note(notes[id]));
         })
     },
     all: async () => {
         return new Promise(async (resolve) => {
             const notesObject = await noteservices._all();
             let notes = Object.values(notesObject);
-
-            noteservices.sortAttribute = 'dueDate';
+            notes = notes.map(note => new Note(note));
 
             notes = noteservices._filter(notes);
             notes = noteservices._sort(notes);
@@ -44,17 +51,32 @@ const noteservices = {
             resolve(notes);
         });
     },
+    _sortAttirubte: 'dueDate',
+    _showArchived: false,
+    getFilter: () => {
+        return noteservices._showArchived;
+    },
+    toggleFilter: () => {
+        noteservices._showArchived = !noteservices._showArchived
+    },
+    setSort: (sort) => {
+        noteservices._sortAttirubte = sort;
+    },
+    getSort: () => {
+        return noteservices._sortAttirubte;
+    },
     _sort: (notes) => {
-        let fn = () => {};
-        if (noteservices.sortAttribute === 'dateCreated') {
+        let fn = () => {
+        };
+        if (noteservices._sortAttirubte === 'dateCreated') {
             fn = (a, b) => {
                 return moment(a.dateCreated).isBefore(moment(b.dateCreated));
             };
-        } else if (noteservices.sortAttribute === 'dueDate') {
+        } else if (noteservices._sortAttirubte === 'dueDate') {
             fn = (a, b) => {
                 return moment(a.dueDate).isAfter(moment(b.dueDate));
             };
-        } else if (noteservices.sortAttribute === 'importance') {
+        } else if (noteservices._sortAttirubte === 'importance') {
             fn = (a, b) => {
                 return a.importance < b.importance;
             };
@@ -62,7 +84,7 @@ const noteservices = {
         return notes.sort(fn);
     },
     _filter: (notes) => {
-        if (!noteservices.showArchived) {
+        if (!noteservices._showArchived) {
             return notes.filter(note => !note.archived);
         }
         return notes;
@@ -70,7 +92,6 @@ const noteservices = {
     _all: async () => {
         return new Promise((resolve) => {
             let notes = JSON.parse(localStorage.getItem("notes")) || {};
-
             resolve(notes);
         })
     },

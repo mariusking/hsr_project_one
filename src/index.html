@@ -32,13 +32,11 @@
                 </div>
                 <div class="list__action__container hide">
                     <div class="list__action__sort button-group">
-                        <button class="button button--active" data-sort="dueDate">By due date</button>
-                        <button class="button" data-sort="dateCreated">By created date</button>
-                        <button class="button" data-sort="importance">By Importance</button>
+                        <button class='button' data-sort="dueDate">By due date</button>
+                        <button class='button' data-sort="dateCreated">By created date</button>
+                        <button class='button' data-sort="importance">By Importance</button>
                     </div>
                     <div class="list__action__filter">
-                        <i class="material-icons">check_box</i>
-                        <span> show archived</span>
                     </div>
                 </div>
             </div>
@@ -47,6 +45,15 @@
             </div>
         </div>
     </main>
+
+    <script id="list-action-filter" type="text/x-handlbars-template">
+        {{#if this}}
+        <i class="material-icons">check_box</i>
+        {{else}}
+        <i class="material-icons">check_box_outline_blank</i>
+        {{/if}}
+        <span> show archived</span>
+    </script>
 
     <script id="note-template" type="text/x-handlbars-template">
         {{#each this}}
@@ -73,7 +80,7 @@
             <div class="note__footer">
                 <div>
                     {{#if archived}}
-                    <i class="material-icons note__action action__toggle__archive">unarchive</i>
+                    <i class="material-icons note__action action__toggle__unarchive">unarchive</i>
                     {{else}}
                     <i class="material-icons note__action action__toggle__archive">archive</i>
                     {{/if}}
