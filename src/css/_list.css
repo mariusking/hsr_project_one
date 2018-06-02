@@ -1,3 +1,7 @@
+.list {
+    margin-bottom: 16px;
+}
+
 .list__header {
     padding: 8px 0;
 }

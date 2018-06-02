@@ -21,8 +21,8 @@ class Note {
 
 //noteservices
 const noteservices = (() => {
-    let filter = true;
-    let sort = 'dueDate';
+    let isFilterActive = true;
+    let sortAttribute = 'dueDate';
 
     function _generateId() {
         return '_' + Math.random().toString(36).substr(2, 9);
@@ -31,18 +31,18 @@ const noteservices = (() => {
     function _sort(notes) {
         let fn = () => {
         };
-        if (sort === 'dateCreated') {
+        if (sortAttribute === 'dateCreated') {
             fn = (a, b) => moment(a.dateCreated).isBefore(moment(b.dateCreated));
-        } else if (sort === 'dueDate') {
+        } else if (sortAttribute === 'dueDate') {
             fn = (a, b) => moment(a.dueDate).isAfter(moment(b.dueDate))
-        } else if (sort === 'importance') {
+        } else if (sortAttribute === 'importance') {
             fn = (a, b) => a.importance < b.importance
         }
         return notes.sort(fn);
     }
 
     function _filter(notes) {
-        if (!filter) {
+        if (!isFilterActive) {
             return notes.filter(note => !note.archived);
         }
         return notes;
@@ -96,19 +96,19 @@ const noteservices = (() => {
     }
 
     function isFiltred() {
-        return filter;
+        return isFilterActive;
     }
 
     function toggleFilter() {
-        filter = !filter;
+        isFilterActive = !isFilterActive;
     }
 
     function setSort(sort) {
-        this.sort = sort;
+        sortAttribute = sort;
     }
 
     function getSort() {
-        return sort;
+        return sortAttribute;
     }
 
     return {
