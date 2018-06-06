@@ -2,9 +2,10 @@ import NoteRepo from '../repo/noteRepo.js';
 
 export default class NoteService {
     constructor() {
+        this._noteRepo = new NoteRepo();
+
         this.filter = true;
         this.sort = 'dueDate';
-        this._noteRepo = new NoteRepo();
     }
 
     async save(note) {

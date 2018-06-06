@@ -2,6 +2,8 @@ import NoteService from '../application/noteService.js';
 
 class IndexController {
     constructor() {
+        this._noteService = new NoteService();
+
         this._listEntities = document.querySelector('.list__entities');
         this._listActionHider = document.getElementById('action__hider');
         this._listActionContainer = document.querySelector('.list__action__container');
@@ -11,8 +13,6 @@ class IndexController {
         this._archiveToggles = [];
         this._unarchiveToggles = [];
         this._editButtons = [];
-
-        this._noteService = new NoteService();
 
         this._applyListeners();
     }
