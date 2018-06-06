@@ -1,6 +1,6 @@
 export default class Note {
-    constructor({id, title, description, importance, dueDate, dateCreated, archived = false}) {
-        this.id = id;
+    constructor({_id, title, description, importance, dueDate, dateCreated, archived = false}) {
+        this._id = _id;
         this.title = title;
         this.description = description;
         this.importance = importance;

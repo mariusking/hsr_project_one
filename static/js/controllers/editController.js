@@ -34,25 +34,25 @@ class EditController {
         this._radioButtons = document.querySelectorAll('.form__radio');
     }
 
-    _getFormValues() {
-        return {
-            id: this._form.dataset.id,
+    _getUpdatedNote() {
+        return new Note({
+            ...this._note,
             title: this._title.value,
             description: this._description.value,
             importance: this._importance.dataset.value,
-            dueDate: this._dueDate.value,
-            archived: JSON.parse(this._form.dataset.archived),
-            dateCreated: this._form.dataset.dateCreated
-        }
+            dueDate: this._dueDate.value
+        })
     }
 
     _applyListeners() {
         this._form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            const noteFormValues = this._getFormValues();
-
-            await this._noteService.save(new Note(noteFormValues));
+            try {
+                await this._noteService.save(new Note(this._getUpdatedNote()));
+            } catch (e) {
+                console.log(e);
+            }
 
             this._form.reset();
             window.location.href = 'index.html';
@@ -72,18 +72,18 @@ class EditController {
             radiogroup.dataset.value = value;
             Array.from(radiogroup.children).forEach((radiobutton) => {
                 radiobutton.classList.toggle(this.RADIO_ACTIVE_CLASS, radiobutton.dataset.value <= value);
-            })
+            });
         });
     }
 
     async updateView() {
         const id = this._idFromUrl();
-        let note = new Note({});
+        this._note = new Note({});
 
         if (id) {
-            note = await this._noteService.get(id);
+            this._note = await this._noteService.get(id);
         }
-        this._render(note);
+        this._render(this._note);
     }
 
     _idFromUrl () {

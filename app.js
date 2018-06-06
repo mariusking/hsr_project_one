@@ -1,10 +1,21 @@
 const express = require('express');
-const path = require('path');
-const serveStatic = require('serve-static');
+const bodyParser = require('body-parser');
+
+const routes = require('./routes/note');
+
 const app = express();
 
-app.use(serveStatic(path.join(__dirname,'static')));
+app.use(bodyParser.json());
 
-app.get('/api', (req, res) => res.send('Hello World!'));
+// serve static
+app.use(express.static(__dirname + '/static'));
+app.use('/libraries', express.static('node_modules'));
+
+// serve routes
+routes(app);
+
+app.use((err, req, res) => {
+    res.status(422).send({error: err.message});
+});
 
 app.listen(3000, () => console.log('Example app listening on port 3000!'));

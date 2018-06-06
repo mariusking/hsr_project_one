@@ -4,8 +4,7 @@
   "description": "",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "./node_modules/.bin/eslint"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -22,10 +21,11 @@
     "eslint-config-google": "^0.9.1"
   },
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "handlebars": "^4.0.11",
     "moment": "^2.22.1",
-    "path": "^0.12.7",
-    "serve-static": "^1.13.2"
+    "nedb": "^1.8.0",
+    "nedb-promise": "^2.0.1"
   }
 }

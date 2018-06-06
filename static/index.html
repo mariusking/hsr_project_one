@@ -48,7 +48,7 @@
 
     <script id="note-template" type="text/x-handlbars-template">
         {{#each this}}
-        <div class="note" data-id="{{id}}">
+        <div class="note" data-id="{{_id}}">
             <div class="note__header">
                 <div>
                     <h3 class="note__title">{{title}}</h3>
@@ -81,8 +81,8 @@
         {{/each}}
     </script>
 
-    <script src="../node_modules/moment/min/moment.min.js"></script>
-    <script src="../node_modules/handlebars/dist/handlebars.min.js"></script>
+    <script src="libraries/moment/min/moment.min.js"></script>
+    <script src="libraries/handlebars/dist/handlebars.min.js"></script>
     <script src="js/helper/handlebars-helper.js"></script>
     <script type="module" src="js/controllers/indexController.js"></script>
     <script type="module" src="js/controllers/styleController.js"></script>
