@@ -4,6 +4,7 @@
 @import url("./_list.css");
 @import url("./_button.css");
 @import url("./_note.css");
+@import url("./_error.css");
 
 html {
     font-family: 'Montserrat', sans-serif;

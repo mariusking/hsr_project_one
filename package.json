@@ -25,6 +25,7 @@
     "express": "^4.16.3",
     "handlebars": "^4.0.11",
     "moment": "^2.22.1",
+    "morgan": "^1.9.0",
     "nedb": "^1.8.0",
     "nedb-promise": "^2.0.1"
   }

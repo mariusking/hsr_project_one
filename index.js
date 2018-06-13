@@ -1,17 +1,29 @@
 const express = require('express');
+const morgan = require('morgan')
 const bodyParser = require('body-parser');
 
 const routes = require('./server/routes/note');
 
-const index = express();
+const app = express();
 
-index.use(bodyParser.json());
 
-// serve routes
-index.use(routes);
+app.use(morgan('tiny'));
+app.use(bodyParser.json());
 
 // serve static
-index.use(express.static(__dirname + '/public'));
-index.use('/libraries', express.static('node_modules'));
+app.use(express.static(`${__dirname}/public`));
+app.use('/libraries', express.static('node_modules'));
 
-index.listen(3000, () => console.log('Example app listening on port 3000!'));
+// serve routes
+app.use(routes);
+
+app.use((req, res, next) => {
+    res.status(404).sendfile('./public/error.html');
+});
+
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something broke!')
+});
+
+app.listen(3000, () => console.log('Example app listening on port 3000!'));
