@@ -17,7 +17,7 @@
             return new Handlebars.SafeString('today');
         } else if (moment(context).isBefore(moment())){
             return new Handlebars.SafeString('overdue');
-        } else {
+        } else if (moment(context).isAfter(moment())){
             const formattedDate = moment(context).format('L');
             return new Handlebars.SafeString(`to be done by ${formattedDate}`);
         }
