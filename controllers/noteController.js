@@ -9,7 +9,11 @@ module.exports = {
         res.send(note);
     },
     async all(req, res) {
-        const notes = await db.find({});
+        const {filter, sort} = req.query;
+        let notes = await db.find({});
+        notes = _sort(notes, sort);
+        notes = _filter(notes, filter);
+
         res.send(notes);
     },
     async create(req, res) {
@@ -29,3 +33,23 @@ module.exports = {
         res.send();
     }
 };
+
+function _sort(notes, sort) {
+    let fn = () => {
+    };
+    if (sort === 'dateCreated') {
+        fn = (a, b) => moment(a.dateCreated).isBefore(moment(b.dateCreated));
+    } else if (sort === 'dueDate') {
+        fn = (a, b) => moment(a.dueDate).isAfter(moment(b.dueDate))
+    } else if (sort === 'importance') {
+        fn = (a, b) => a.importance < b.importance
+    }
+    return notes.sort(fn);
+}
+
+function _filter(notes, filter) {
+    if (!filter) {
+        return notes.filter(note => !note.archived);
+    }
+    return notes;
+}

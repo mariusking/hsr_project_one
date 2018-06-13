@@ -1,6 +1,5 @@
 export default class NoteRepo {
     async save(note) {
-        console.log(note);
         if (note._id) {
             return this._update(note);
         } else {
@@ -16,7 +15,7 @@ export default class NoteRepo {
     }
 
     async all({filter, sort}) {
-        const res = await fetch(`/api/notes`, {
+        const res = await fetch(`/api/notes?sort=${sort}&filter=${filter}`, {
             method: 'GET'
         });
         return await res.json();

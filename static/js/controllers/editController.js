@@ -48,11 +48,7 @@ class EditController {
         this._form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            try {
-                await this._noteService.save(new Note(this._getUpdatedNote()));
-            } catch (e) {
-                console.log(e);
-            }
+            await this._noteService.save(this._getUpdatedNote());
 
             this._form.reset();
             window.location.href = 'index.html';
@@ -86,7 +82,7 @@ class EditController {
         this._render(this._note);
     }
 
-    _idFromUrl () {
+    _idFromUrl() {
         const url = new URLSearchParams(window.location.search);
         return url.get('id');
     }
