@@ -4,7 +4,8 @@
   "description": "",
   "private": true,
   "scripts": {
-    "start": "node --experimental-modules index.mjs"
+    "start": "node --experimental-modules index.mjs",
+    "debug": "node $NODE_DEBUG_OPTION --experimental-modules index.mjs"
   },
   "repository": {
     "type": "git",

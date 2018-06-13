@@ -43,7 +43,12 @@ const noteController = (() => {
         if (sort === 'createdAt') {
             fn = (a, b) => moment(a.createdAt).isBefore(moment(b.createdAt));
         } else if (sort === 'dueDate') {
-            fn = (a, b) => moment(a.dueDate).isAfter(moment(b.dueDate))
+            fn = (a, b) => {
+                if(a.dueDate === '') {
+                    return true;
+                }
+                return moment(a.dueDate).isAfter(moment(b.dueDate))
+            }
         } else if (sort === 'importance') {
             fn = (a, b) => a.importance < b.importance
         }
