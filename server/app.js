@@ -8,7 +8,8 @@ const app = express();
 app.use(bodyParser.json());
 
 // serve static
-app.use(express.static(__dirname + '/static'));
+console.log(__dirname);
+app.use(express.static(__dirname + '/../static'));
 app.use('/libraries', express.static('node_modules'));
 
 // serve routes

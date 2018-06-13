@@ -7,7 +7,7 @@ const someNotes = {
         "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
         "importance": "5",
         "dueDate": "2018-06-30",
-        "dateCreated": "2018-06-06T12:27:45.026Z",
+        "createdAt": "2018-06-06T12:27:45.026Z",
         "archived": false
     },
     "_0lrilwmsm": {
@@ -16,7 +16,7 @@ const someNotes = {
         "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
         "importance": "2",
         "dueDate": "2018-06-19",
-        "dateCreated": "2018-06-06T12:28:50.615Z",
+        "createdAt": "2018-06-06T12:28:50.615Z",
         "archived": false
     },
     "_0lsengfem": {
@@ -25,7 +25,7 @@ const someNotes = {
         "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
         "importance": "3",
         "dueDate": "2018-06-22",
-        "dateCreated": "2018-06-05T12:28:50.615Z",
+        "createdAt": "2018-06-05T12:28:50.615Z",
         "archived": false
     },
     "_a4d0dlair": {
@@ -34,7 +34,7 @@ const someNotes = {
         "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
         "importance": "3",
         "dueDate": "2018-04-22",
-        "dateCreated": "2018-04-05T12:28:50.615Z",
+        "createdAt": "2018-04-05T12:28:50.615Z",
         "archived": true
     }
 };
@@ -45,7 +45,7 @@ export default class NoteRepo {
             const notes = await this._all();
             if (!note._id) {
                 note._id = this._generateId();
-                note.dateCreated = moment();
+                note.createdAt = moment();
             }
             notes[note._id] = note;
             this._write(notes);
@@ -76,8 +76,8 @@ export default class NoteRepo {
     _sort(notes, sort) {
         let fn = () => {
         };
-        if (sort === 'dateCreated') {
-            fn = (a, b) => moment(a.dateCreated).isBefore(moment(b.dateCreated));
+        if (sort === 'createdAt') {
+            fn = (a, b) => moment(a.createdAt).isBefore(moment(b.createdAt));
         } else if (sort === 'dueDate') {
             fn = (a, b) => moment(a.dueDate).isAfter(moment(b.dueDate))
         } else if (sort === 'importance') {

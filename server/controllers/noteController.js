@@ -1,6 +1,6 @@
 const moment = require('moment');
 const Datastore = require('nedb-promise');
-const db = Datastore({filename: 'test.db', autoload: true});
+const db = Datastore({filename: 'test.db', autoload: true, timestampData:true});
 
 module.exports = {
     async get(req, res) {
@@ -11,14 +11,14 @@ module.exports = {
     async all(req, res) {
         const {filter, sort} = req.query;
         let notes = await db.find({});
-        notes = _sort(notes, sort);
         notes = _filter(notes, filter);
+        notes = _sort(notes, sort);
 
         res.send(notes);
     },
     async create(req, res) {
         const notesProps = req.body;
-        const note = await db.insert({...notesProps, dateCreated: new Date()});
+        const note = await db.insert({...notesProps});
         res.send(note);
     },
     async update(req, res) {
@@ -37,8 +37,8 @@ module.exports = {
 function _sort(notes, sort) {
     let fn = () => {
     };
-    if (sort === 'dateCreated') {
-        fn = (a, b) => moment(a.dateCreated).isBefore(moment(b.dateCreated));
+    if (sort === 'createdAt') {
+        fn = (a, b) => moment(a.createdAt).isBefore(moment(b.createdAt));
     } else if (sort === 'dueDate') {
         fn = (a, b) => moment(a.dueDate).isAfter(moment(b.dueDate))
     } else if (sort === 'importance') {
