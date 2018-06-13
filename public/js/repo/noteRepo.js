@@ -15,7 +15,7 @@ export default class NoteRepo {
     }
 
     async all({filter, sort}) {
-        const res = await fetch(`/api/notes?sort=${sort}&filter=${filter}`, {
+        const res = await fetch(`/api/notes?sort=${sort}&filterArchived=${!filter}`, {
             method: 'GET'
         });
         return await res.json();

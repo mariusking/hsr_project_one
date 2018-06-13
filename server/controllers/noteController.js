@@ -9,9 +9,9 @@ module.exports = {
         res.send(note);
     },
     async all(req, res) {
-        const {filter, sort} = req.query;
+        const {filterArchived, sort} = req.query;
         let notes = await db.find({});
-        notes = _filter(notes, filter);
+        notes = _filter(notes, filterArchived);
         notes = _sort(notes, sort);
 
         res.send(notes);
@@ -47,8 +47,8 @@ function _sort(notes, sort) {
     return notes.sort(fn);
 }
 
-function _filter(notes, filter) {
-    if (!filter) {
+function _filter(notes, filterArchived) {
+    if ('true' === filterArchived) {
         return notes.filter(note => !note.archived);
     }
     return notes;
