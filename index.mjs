@@ -1,8 +1,8 @@
-const express = require('express');
-const morgan = require('morgan')
-const bodyParser = require('body-parser');
+import express from 'express';
+import morgan from 'morgan';
+import bodyParser from 'body-parser';
 
-const routes = require('./server/routes/note');
+import routes from './routes/note.mjs';
 
 const app = express();
 
@@ -11,7 +11,7 @@ app.use(morgan('tiny'));
 app.use(bodyParser.json());
 
 // serve static
-app.use(express.static(`${__dirname}/public`));
+app.use(express.static(`public`));
 app.use('/libraries', express.static('node_modules'));
 
 // serve routes
