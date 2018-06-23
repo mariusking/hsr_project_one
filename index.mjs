@@ -12,7 +12,8 @@ app.use(bodyParser.json());
 
 // serve static
 app.use(express.static(`public`));
-app.use('/libraries', express.static('node_modules'));
+app.use('/libraries/moment', express.static('node_modules/moment/min'));
+app.use('/libraries/handlebars', express.static('node_modules/handlebars/dist'));
 
 // serve routes
 app.use(routes);
