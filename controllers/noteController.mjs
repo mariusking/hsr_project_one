@@ -2,33 +2,57 @@ import nodeRepo from './../repo/noteRepo.mjs';
 import noteRepo from "../repo/noteRepo";
 
 const noteController = (() => {
-    async function get(req, res) {
+    async function get(req, res, next) {
         const _id = req.params.id;
-        const note = await nodeRepo.get(_id);
-        res.send(note);
+        try {
+            const note = await nodeRepo.get(_id);
+            res.send(note);
+        } catch(e) {
+            next(e);
+        }
     }
 
-    async function all(req, res) {
+    async function all(req, res, next) {
         const {filterArchived, sort} = req.query;
-        let notes = await nodeRepo.all(filterArchived, sort);
-        res.send(notes);
+
+        try {
+            let notes = await nodeRepo.all(filterArchived, sort);
+            res.send(notes);
+        } catch (e) {
+            next(e);
+        }
     }
 
-    async function create(req, res) {
+    async function create(req, res, next) {
         const notesProps = req.body;
-        const note = await noteRepo.create(notesProps);
-        res.send(note);
+
+        try {
+            const note = await noteRepo.create(notesProps);
+            res.send(note);
+        } catch (e) {
+            next(e);
+        }
     }
-    async function update(req, res) {
+    async function update(req, res, next) {
         const notesProps = req.body;
-        await noteRepo.update(notesProps);
-        res.send(notesProps);
+
+        try {
+            await noteRepo.update(notesProps);
+            res.send(notesProps);
+        } catch (e) {
+            next(e);
+        }
 
     }
-    async function remove(req, res) {
+    async function remove(req, res, next) {
         const _id = req.params.id;
-        await noteRepo.remove(_id);
-        res.send();
+
+        try {
+            await noteRepo.remove(_id);
+            res.send();
+        } catch (e) {
+            next(e);
+        }
     }
 
     return {

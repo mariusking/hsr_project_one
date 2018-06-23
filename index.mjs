@@ -5,6 +5,7 @@ import bodyParser from 'body-parser';
 import routes from './routes/note.mjs';
 
 const app = express();
+const port = 3000;
 
 
 app.use(morgan('tiny'));
@@ -23,8 +24,7 @@ app.use((req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
-    console.error(err.stack);
     res.status(500).send('Something broke!')
 });
 
-app.listen(3000, () => console.log('Example app listening on port 3000!'));
+app.listen(port, () => console.log(`NoteApp is served under http://127.0.0.1:${port}`));
