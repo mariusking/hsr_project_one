@@ -1,5 +1,5 @@
-import Note from './../model/noteModel.js';
-import NoteService from './../service/noteService.js';
+import Note from '../datamodel/noteModel.js';
+import NoteService from '../model/noteService.js';
 
 class EditController {
     constructor() {

@@ -1,4 +1,4 @@
-import NoteService from './../service/noteService.js';
+import NoteService from '../model/noteService.js';
 
 class IndexController {
     constructor() {

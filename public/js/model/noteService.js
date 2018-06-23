@@ -1,4 +1,4 @@
-import NoteRepo from './../repo/noteRepo.js';
+import NoteRepo from '../repo/noteRepo.js';
 
 export default class NoteService {
     constructor() {

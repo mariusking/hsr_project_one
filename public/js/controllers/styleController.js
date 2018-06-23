@@ -1,4 +1,4 @@
-import StyleService from './../service/styleService.js'
+import StyleService from '../model/styleService.js'
 
 class StyleController {
     constructor() {
