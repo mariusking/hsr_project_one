@@ -1,4 +1,4 @@
-import Note from './../model/noteModel.js';
+import Note from '../datamodel/noteModel.js';
 
 const someNotes = {
     "_jk3n6nmf0": {
